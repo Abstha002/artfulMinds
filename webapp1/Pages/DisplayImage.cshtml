@@ -1,0 +1,40 @@
+﻿@page
+@model webapp1.Pages.DisplayImageModel
+@* @{ *@
+@* } *@
+@* @page *@
+@* @model WebApplication4.Pages.DisplayImageModel *@
+@{
+    ViewBag.title = "Image";
+}
+@if (Model.ContentItem != null)
+{
+    <!-- Essay Content Section -->
+    <section class="essay-container fade-in">
+        <div class="essay-header">
+            <h1 id="essay-title">@Model.ContentItem.imgTitle</h1>
+            <div class="essay-meta">
+                <span id="essay-category">Category: Arts & Images</span>
+                <span id="essay-author">By: @Model.ContentItem.StudentName</span>
+            </div>
+        </div>
+        <div id="essay-body" class="essay-body">
+            <img src=@Model.ContentItem.imgLink alt=@Model.ContentItem.imgTitle style="max-width: 100%;"/>
+        </div>
+        @* Check if user is logged in *@
+        @{
+            var isLoggedIn = HttpContext.Session.GetString("Login") == "true";
+        }
+        @if (isLoggedIn)
+        {
+            <form method="post" asp-page-handler="Delete">
+                <input type="hidden" name="id" value="@Model.ContentItem.Id" />
+                <button type="submit">Delete the content</button>
+            </form>
+        }
+    </section>
+}
+else
+{
+    <p>Content not found.</p>
+}

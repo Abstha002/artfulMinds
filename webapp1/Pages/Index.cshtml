@@ -1,0 +1,141 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@* <div class="text-center"> *@
+@*     <h1 class="display-4">Welcome</h1> *@
+@*     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
+@* </div> *@
+@* @page *@
+@* @model WebApplication4.Pages.IndexModel *@
+@* @{ *@
+@*     ViewBag.title = "Home"; *@
+@* } *@
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Welcome to artfulMinds</h1>
+        <p>
+            Empowering students with knowledge, creativity, and opportunities to
+            excel in every aspect of their lives.
+        </p>
+        <a asp-page="explore" class="cta-button">Explore Creative Works</a>
+    </div>
+</section>
+
+<!-- About Section latest--posts -->
+<section class="featured-post">
+    <div class="featured-post-container">
+        <!-- Left Side: Post Content (Post Card) -->
+        @foreach (var con in Model.contents)  
+         {
+            <div class="post-left"> 
+                <div class="post-card">
+                    <h4 class="post-title">@con.Title</h4>
+                    <p class="post-category">Category: @con.Category</p>
+                    <p class="post-content">By:@con.StudentName</p>
+
+        @*             <!-- Post description wrapped in div for multiline typing --> *@
+
+                    <p class="post-description">
+                        @con.Content
+                    </p>
+
+
+        @*             <!-- Read More Button --> *@
+                    <a href="Essay?id=@con.Id" class="read-more">Read More</a>
+
+                </div>
+            </div>
+                   }
+
+            <!-- Right Side: Why Students Should Post -->
+            <div class="post-right">
+                <h3>Why Upload Your Artwork?</h3>
+                <p>At Artful Minds, we believe in empowering artists by providing a platform to showcase their creativity. Uploading your art helps you get discovered, build your portfolio, and connect with fellow artists.</p>
+                <ul>
+                    <li>Build your portfolio</li>
+                    <li>Gain exposure in the art community</li>
+                    <li>Connect with other artists</li>
+                </ul>
+                <a asp-page="upload" class="cta-button">Upload Your Artwork</a>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>About Us</h2>
+                <p>
+                    ArtfulMinds is dedicated to providing a nurturing environment for students to grow,
+                    learn, and discover their true potential. Our curriculum is designed to encourage critical thinking,
+                    creativity, and innovation while fostering a love for learning in every student.
+                </p>
+                <p>
+                    Our mission is to empower students with the tools they need to excel in their academic journey
+                    and beyond, preparing them for a bright future.
+                </p>
+                <a asp-page="about" class="cta-button">Learn More</a>
+            </div>
+            <div class="about-image">
+                <img src="./lib/images/school.jpg" alt="Sharnik Shanti School" />
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <h2>What People Are Saying</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <p>"The creative programs and activities allowed me to express myself freely. I will always cherish my time here."</p>
+                <h4>- Nischal Shakya</h4>
+                <p>Student</p>
+            </div>
+            <div class="testimonial">
+                <p>"ArtfulMinds has transformed my creative journey. I am now more confident and inspired to share my art."</p>
+                <h4>- Rohit Maharjan</h4>
+                <p>Student</p>
+            </div>
+            <div class="testimonial">
+                <p>"I love how ArtfulMinds connects me with like-minded individuals. The supportive community has nurtured my talent and helped me grow."</p>
+                <h4>- Mukul Gupta</h4>
+                <p>Student</p>
+            </div>
+            <div class="testimonial">
+                <p>"The platform’s unique approach to creativity has opened new avenues for self-expression. I feel truly valued and encouraged."</p>
+                <h4>- Anuja Sharma</h4>
+                <p>Student</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Team Section -->
+    <section id="core-team" class="core-team">
+        <h2>Meet the Core Team</h2>
+        <div class="team-container">
+            <div class="team-member">
+                <img src="./lib/images/abhay.jpg" alt="Member 1">
+                <h3>Abhay Raj Shrestha</h3>
+                <p>Co-Founder & Project Manager. Passionate about creativity and innovation. Loves bringing ideas to life!</p>
+            </div>
+            <div class="team-member">
+                <img src="./lib/images/Aman.jpeg" alt="Member 2">
+                <h3>Aman Thapa</h3>
+                <p>Lead Developer. Focused on building seamless user experiences. Code is his second language!</p>
+            </div>
+            <div class="team-member">
+                <img src="./lib/images/Manish.jpg" alt="Member 3">
+                <h3>Manish Thapa</h3>
+                <p>Creative Director. Specializes in graphic design and branding. Turning concepts into visual masterpieces.</p>
+            </div>
+        </div>
+    </section>

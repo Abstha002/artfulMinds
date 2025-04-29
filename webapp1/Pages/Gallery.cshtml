@@ -1,0 +1,85 @@
+﻿@page
+@model webapp1.Pages.GalleryModel
+@* @{ *@
+@* } *@
+@* @page *@
+
+@* @model WebApplication4.Pages.GalleryModel *@
+@{
+    Layout = "_Layout"; // Use your existing layout
+    ViewData["Title"] = "Gallery";
+    ViewBag.title = "Gallery";
+}
+
+<!-- Gallery Section (Pinterest-style Masonry Layout) -->
+<section class="gallery-page">
+ <h1>Student Art Gallery</h1>
+    <div class="masonry-grid">
+        @foreach (var img in Model.images)
+        {
+    <div class="masonry-item">
+        <a href="/DisplayImage?id=@img.Id">
+            <img src=@img.imgLink alt=@img.imgTitle>
+        </a>
+    </div>
+        }
+    </div>
+</section>
+
+<!-- Floating Upload Button -->
+<a href="/GalleryUpload" class="upload-btn">Upload Your Artwork</a>
+
+<!-- Inline CSS specific for the masonry gallery and floating button -->
+<style>
+    .gallery-page {
+        padding: 50px 20px;
+        background-color: var(--card-bg-color);
+        text-align: center;
+    }
+    .masonry-grid {
+        column-count: 3;
+        column-gap: 20px;
+    }
+    .masonry-item {
+        background-color: var(--light-bg-color);
+        margin: 2px 0 20px;
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px var(--box-shadow-color);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .masonry-item:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 6px 12px var(--box-shadow-color);
+    }
+    .masonry-item img {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease;
+    }
+    .masonry-item:hover img {
+        transform: scale(1.05);
+    }
+    /* Floating Upload Button Styles */
+    .upload-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0 4px 8px var(--box-shadow-color);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        z-index: 100;
+    }
+    .upload-btn:hover {
+        background-color: var(--accent-color);
+        transform: scale(1.05);
+    }
+
+</style>

@@ -1,0 +1,29 @@
+﻿@page
+@model webapp1.Pages.ExploreModel
+@* @{ *@
+@* } *@
+@* @page *@
+@* @model WebApplication4.Pages.ExploreModel *@
+@{
+    ViewBag.title = "Explore";
+}
+
+    <!-- Explore Section -->
+    <section class="explore-page">
+        <div class="container">
+            <h1>Explore Creative Works</h1>
+            <div class="works-grid">
+                @foreach (var con in Model.contents)
+                {
+                    <div class="work-card">
+                        <h2>@con.Title</h2>
+                        <p>Category: @con.Category</p>
+                        <p>By: @con.StudentName</p>
+                        <a href="/Essay?id=@con.Id">Read More</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+<script src="./js/Essay.js"></script>

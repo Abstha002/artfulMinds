@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - webapp1</title>
+    <script type="importmap"></script>
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/webapp1.styles.css" asp-append-version="true" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <h2 class="nav-logo"><a asp-page="index">ArtfulMinds</a></h2>
+                <ul class="nav-links">
+                    <li><a asp-page="index">Home</a></li>
+                    <li><a asp-page="explore">Explore</a></li>
+                    <li><a asp-page="Gallery">Gallery</a></li>
+                    <li><a asp-page="about">About</a></li>
+                    <li><a asp-page="contact">Contact</a></li>
+                    <li><a asp-page="upload">Upload</a></li>
+
+
+                    @* Check if user is logged in *@
+                    @{
+                        var isLoggedIn = Context.Session.GetString("Login") == "true";
+                    }
+
+                    @if (isLoggedIn)
+                    {
+                        <li><a asp-page="admindashboard">AdminDashBoard</a></li>
+
+                        <li>
+                            <form method="post" asp-page="/AdminDashboard" asp-page-handler="Logout">
+                                <button type="submit" class="btn btn-link text-dark">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a asp-page="login">Login</a></li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ArtfulMinds. All Rights Reserved.</p>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.all.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

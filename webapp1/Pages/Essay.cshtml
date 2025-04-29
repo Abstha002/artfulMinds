@@ -1,0 +1,47 @@
+﻿
+@page
+@model webapp1.Pages.EssayModel
+@* @{ *@
+@* } *@
+@* @page *@
+@* @model WebApplication4.Pages.EssayModel *@
+@{
+    ViewBag.title = "Content";
+}
+@if (Model.ContentItem != null)
+{
+    <!-- Essay Content Section -->
+    <section class="essay-container fade-in">
+        <div class="essay-header">
+            <h1 id="essay-title">@Model.ContentItem.Title</h1>
+            <div class="essay-meta">
+                <span id="essay-category">Category: @Model.ContentItem.Category</span>
+                <span id="essay-author">By: @Model.ContentItem.StudentName</span>
+            </div>
+        </div>
+        <div id="essay-body" class="essay-body">
+            <!-- Content will be injected via JavaScript -->
+        </div>
+
+        @* Check if user is logged in *@
+        @{
+            var isLoggedIn = HttpContext.Session.GetString("Login") == "true";
+        }
+        @if (isLoggedIn)
+        {
+            <form method="post" asp-page-handler="Delete">
+                <input type="hidden" name="id" value="@Model.ContentItem.Id" />
+                <button type="submit">Delete the content</button>
+            </form>
+        }
+    </section>
+    <script>
+        // Escape the Razor content for safe injection
+        var contentText = @Html.Raw(Json.Serialize(Model.ContentItem.ContentText));
+        document.getElementById('essay-body').innerHTML = contentText;
+    </script>
+}
+else
+{
+    <p>Content not found.</p>
+}

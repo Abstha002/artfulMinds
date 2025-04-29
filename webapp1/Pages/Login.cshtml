@@ -1,0 +1,36 @@
+﻿@page
+@model webapp1.Pages.LoginModel
+@* @{ *@
+@* } *@
+@* @page *@
+@* @model WebApplication4.Pages.LoginModel *@
+@{
+    ViewBag.title = "Login";
+}
+
+
+    <div class="login-container">
+        <div class="login-box">
+            <h2>ArtfulMinds</h2>
+            <h2>Login</h2>
+            <form method="post">
+                <div class="input-group">
+                    <label for="Email">Email</label>
+                    <input type="text" id="Email" name="Email" asp-for="Email" placeholder="Enter your Email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" asp-for="Password" placeholder="Enter your password" required>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <div class="button-container">
+                    <button type="submit">Login</button>
+                </div>
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="#">Sign up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
